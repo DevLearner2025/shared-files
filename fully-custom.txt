@@ -11,9 +11,46 @@ _oak_index/acme.jpmaLuceneJCK-1-custom-1/.content.xml
     excludedPaths="[/var,/etc/replication,/etc/workflow/instances,/jcr:system,/content/jpm-cp/jpma/en_us,/content/jpm-cp/jpma/ru_ru,/content/jpm-cp/jpma/pt_br,/content/jpm-cp/jpma/it_it,/content/jpm-cp/jpma/fr_fr,/content/jpm-cp/jpma/zh_cn]"
     includedPaths="[/content]"
     queryPaths="[/content/jpm-cp/jpma/ja_jp,/content/jpm-cp/jpma/zh_tw,/content/jpm-cp/jpma/zh_cn]"
-    reindex="{Boolean}false"
-    reindexCount="{Long}25"
     type="lucene">
+    <aggregates jcr:primaryType="nt:unstructured">
+        <cq:Page jcr:primaryType="nt:unstructured">
+            <include0
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content"/>
+            <include1
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*"/>
+            <include2
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*"/>
+            <include3
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*"/>
+            <include4
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*"/>
+            <include5
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*/*"/>
+            <include6
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*/*/*"/>
+            <include7
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*/*/*/*"/>
+            <include8
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*/*/*/*/*"/>
+            <include9
+                jcr:primaryType="nt:unstructured"
+                path="jcr:content/*/*/*/*/*/*/*/*/*"/>
+        </cq:Page>
+    </aggregates>
+    <analyzers jcr:primaryType="nt:unstructured">
+        <default jcr:primaryType="nt:unstructured"
+            class="org.apache.lucene.analysis.standard.StandardAnalyzer"
+            indexOriginalTerm="{Boolean}true"/>
+    </analyzers>
     <indexRules jcr:primaryType="nt:unstructured">
         <cq:Page jcr:primaryType="nt:unstructured">
             <properties jcr:primaryType="nt:unstructured">
@@ -127,6 +164,7 @@ _oak_index/acme.jpmaLuceneJCK-1-custom-1/.content.xml
     </indexRules>
 </jcr:root>
 
+
 =============================================================
 
 Original: jpmaLuceneJCK
@@ -164,4 +202,5 @@ EvaluatePathRestrictions: Kept true for optimal query performance
 ExcludedPaths: Maintained your system path exclusions
 
 =================================================================
+
 
