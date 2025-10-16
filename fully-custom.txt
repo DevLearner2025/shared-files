@@ -1,15 +1,5 @@
-<analyzers jcr:primaryType="nt:unstructured">
-        <default jcr:primaryType="nt:unstructured">
-            <tokenizer jcr:primaryType="nt:unstructured" name="standard"/>
-            <filters jcr:primaryType="nt:unstructured">
-                <CJKWidth jcr:primaryType="nt:unstructured"/>
-                <CJKBigram jcr:primaryType="nt:unstructured" 
-                    outputUnigrams="{Boolean}true"/>
-                <LowerCase jcr:primaryType="nt:unstructured"/>
-                <AsciiFolding jcr:primaryType="nt:unstructured" 
-                    preserveOriginal="{Boolean}true"/>
-                <WordDelimiter jcr:primaryType="nt:unstructured" 
-                    preserveOriginal="{Boolean}true"/>
-            </filters>
-        </default>
-    </analyzers>
+SELECT [jcr:path],[jcr:score]
+FROM [cq:Page] AS s
+WHERE ISDESCENDANTNODE(s, '/content/jpm-cp/jpma')
+AND CONTAINS([jcr:content/jcr:title], 'テスト')
+ORDER BY [jcr:content/cq:lastModified] DESC
