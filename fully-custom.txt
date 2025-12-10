@@ -47,19 +47,19 @@ WRITING RULES:
 
 
 
+
 earliest="12/10/2025:17:45:00" latest="12/10/2025:19:00:00"
 | rex field=_raw "\[(?<request_id>\d+)\]"
-| rex field=_raw "(?<direction>->|<-)"
+| transaction request_id maxspan=5s
 | rex field=_raw "->\s+(?<method>GET|POST|PUT|DELETE)\s+(?<request_url>\S+)\s+HTTP"
 | rex field=_raw "<-\s+(?<response_code>\d{3})\s+(?<content_type>\S+)\s+(?<response_time>\d+)ms"
-| eval response_time=tonumber(response_time)
-| stats values(method) as method, values(request_url) as request_url, values(response_code) as response_code, values(response_time) as response_time, values(_time) as time by request_id
 | where isnotnull(request_url) AND isnotnull(response_time)
-| eval time_readable=strftime(time, "%d/%m/%Y %H:%M:%S")
-| where response_time > 3000
+| eval response_time=tonumber(response_time)
+| convert ctime(_time) as time_readable
 | table time_readable, method, request_url, response_code, response_time
 | sort - response_time
-| head 50
+
+
 
 
 
