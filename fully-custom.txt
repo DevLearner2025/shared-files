@@ -44,3 +44,16 @@ WRITING RULES:
 - Make it scannable - people should find key info in 10 seconds
 - Every action item MUST have an owner and due date
 - Don't add information that wasn't in the original 
+
+
+earliest="12/10/2025:17:45:00" latest="12/10/2025:19:00:00"
+| rex field=_raw "(?<method>GET|POST|PUT|DELETE)\s+(?<request_url>\S+)\s+HTTP"
+| rex field=_raw "(?<response_code>\d{3})\s+(?<content_type>\S+)\s+(?<response_time>\d+)ms$"
+| eval response_time=tonumber(response_time)
+| where response_time > 3000
+| convert ctime(_time) as time_readable
+| table time_readable, method, request_url, response_code, response_time
+| sort - response_time
+| head 50
+
+
